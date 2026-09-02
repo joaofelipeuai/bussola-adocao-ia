@@ -18,3 +18,7 @@ Regras de pontuação, pesos, limites de rollout, gates de proficiência, import
 - Planejamento separado de execução. Checklists e evidências são autodeclarados.
 - Todos os 9 itens de política e 11 indicadores listados no guia foram incluídos, apesar dos títulos divergentes.
 - Não foram reproduzidas estatísticas não verificadas nem afirmações regulatórias ou comerciais do guia.
+
+## Identidade visual
+Layout adaptado às imagens askblue fornecidas pelo usuário: azul royal #030cef, ciano #00e6ef e fundos claros. O logotipo original é exibido por enquadramento CSS da imagem fornecida, sem redesenhar sua tipografia.
+
