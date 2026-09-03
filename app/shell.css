@@ -82,7 +82,7 @@ details[open] > summary::after { content: '−'; }
 .autonomy-panel { padding: 14px; margin-bottom: 16px; }
 .wave-overview { margin: 16px 0; }
 .metric-row { padding: 12px 0; }
-/* Keep the summary in a stationary column outside the scrolling form. */
+/* The scroll pane spans the workspace; the summary floats above it. */
 .content-body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -93,21 +93,22 @@ details[open] > summary::after { content: '−'; }
 }
 .content-body .work-grid { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 1201px) {
-  .content-body.with-context {
-    grid-template-columns: minmax(0, 1fr) 230px;
-    gap: 12px;
-    max-width: 1390px;
-    margin: 0 auto;
-    padding-right: 28px;
-  }
-  .with-context main { padding-right: 8px; }
-  .content-body > .context {
-    align-self: start;
-    min-height: 0;
-    max-height: calc(100% - 48px);
-    margin: 24px 0;
+  /* Reserve room for the card without narrowing the scroll container. */
+  .with-context main { padding-right: 294px; }
+  .content-body .context {
+    position: fixed;
+    top: calc(50vh + 27px);
+    top: calc(50dvh + 27px);
+    /* Account for the sidebar, centered page width and outer scrollbar. */
+    right: max(44px, calc((100vw - 240px - 1390px) / 2 + 44px));
+    transform: translateY(-50%);
+    width: 230px;
+    max-height: calc(100vh - 102px);
+    max-height: calc(100dvh - 102px);
+    margin: 0;
+    z-index: 1;
     overflow-y: auto;
-    overscroll-behavior: contain;
+    overscroll-behavior: auto;
     scrollbar-width: thin;
     overflow-wrap: anywhere;
   }
