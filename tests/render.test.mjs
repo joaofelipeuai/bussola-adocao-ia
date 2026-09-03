@@ -20,6 +20,6 @@ test('todos os formulários renderizam no servidor, incluindo estados vazios e c
     const html=renderToString(React.createElement(mod[name],props));assert.ok(html.length>100,file);assert.ok(!html.includes('[object Object]'),file);
    }}
   }
-  const {default:Home}=await server.ssrLoadModule(path.resolve('app/page.jsx'));const html=renderToString(React.createElement(Home));assert.match(html,/V2 · 2026/);assert.ok(!html.includes('class="askblue-logo"'));
+  const {default:Home}=await server.ssrLoadModule(path.resolve('components/adoption-wizard.jsx'));const html=renderToString(React.createElement(Home,{viewer:{id:'test-owner',email:'owner@example.com'}}));assert.match(html,/V2 · 2026/);assert.ok(!html.includes('class="askblue-logo"'));
  }finally{await server.close()}
 });

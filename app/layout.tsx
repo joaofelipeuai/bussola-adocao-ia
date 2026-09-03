@@ -4,6 +4,7 @@ import './wizard.css';
 import './askblue.css';
 import './v2.css';
 import './shell.css';
+import './access.css';
 const title='Bússola v2 | Adoção de IA';
 const description='Planeje a adoção de IA em sete fases, com pilotos mensuráveis, cinco métricas DORA, autonomia de agentes e governança atualizada.';
 const origin='https://bussola-adocao-ia.joaofelipesouza.chatgpt.site';
