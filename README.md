@@ -1,24 +1,34 @@
-# Bússola — Adoção de IA
+# Bússola v2 — Adoção de IA
 
-Wizard independente baseado no Guia Completo de Adoção de IA do Tech Leads Club, Beta v0.5 (37 páginas). Dados do usuário ficam exclusivamente no localStorage do navegador. Backup/importação JSON e exportação Markdown.
+Adaptação independente das sete fases do Guia Tech Leads Club Beta v0.5, com referências revistas em 2026-09-03. A versão v2 pertence à aplicação; não é uma edição oficial do framework.
 
-## Uso e validação
+## Uso e verificação
+
 - npm run dev
 - npm run build
-- node --test lib/framework.test.mjs
+- node --test lib/framework.test.mjs lib/v2.test.mjs lib/render.test.mjs
 
-Regras de pontuação, pesos, limites de rollout, gates de proficiência, importação e exportação cobertos por testes de domínio. Compilação de produção validada. Testes de interação/visuais no navegador não foram solicitados. WebMCP registra read_adoption_plan e stage_diagnostic_answers quando document.modelContext está disponível; não foi possível verificar o contrato em um contexto WebMCP compatível nesta sessão.
+Testes cobrem pontuação original, migração v1, resultados incompletos, autonomia, falhas de avaliações, transporte MCP, calibrações, exportação e renderização no servidor dos formulários. Interações e verificações visuais no navegador não foram solicitadas. WebMCP preserva read_adoption_plan e stage_diagnostic_answers quando document.modelContext está disponível; o contrato não foi validado em um cliente WebMCP nesta atualização.
 
-## Decisões da adaptação
-- Mantida a fórmula de prioridade (impacto × 3 + (4 − esforço) × 2 + risco × 2), cuja faixa real é 7–21; o guia informa máximo 15. Limiar crítico preservado em 11.
-- Alternativas do diagnóstico resumidas; perguntas, dimensões, pesos e thresholds preservados.
-- Desempate do gargalo por avaliação humana do impacto operacional.
-- Arquétipos escolhidos explicitamente, pois o guia não define limites numéricos para pequeno/médio/grande.
-- Níveis iniciais dos templates e marcos por esforço são sugestões da adaptação; calibrações e gates seguem o guia.
-- Planejamento separado de execução. Checklists e evidências são autodeclarados.
-- Todos os 9 itens de política e 11 indicadores listados no guia foram incluídos, apesar dos títulos divergentes.
-- Não foram reproduzidas estatísticas não verificadas nem afirmações regulatórias ou comerciais do guia.
+## Novidades
 
-## Identidade visual
-Layout adaptado às imagens askblue fornecidas pelo usuário: azul royal #030cef, ciano #00e6ef e fundos claros. O logotipo original é exibido por enquadramento CSS da imagem fornecida, sem redesenhar sua tipografia.
+- Quatro avaliações complementares de documentação, dados, ambiente e resultado para o usuário. Não alteram a média das nove dimensões; geram ações no plano de gargalos.
+- Prioridade calculada em 7–21. Limiar crítico (11) e percentual L2+ (60%) ajustáveis, com justificativa quando alterados.
+- Piloto com fluxo, comparação, datas, fonte, indicadores, metas e decisões de expandir, ajustar ou encerrar. Variações são descritivas, sem inferência causal automática.
+- Abrangência da adoção separada da autonomia: sugerir, alterar em ambiente isolado, executar ferramentas, atuar em produção. Controles proporcionais por estágio, escopo, responsável e evidências de avaliação.
+- Casos de avaliação com configuração versionada, tarefas, critérios, execuções e evidências. Trocas na configuração invalidam os resultados; mudanças no experimento invalidam a decisão de expansão.
+- Governança baseada no risco da mudança, OWASP 2026, MCP por transporte, privacidade/retencão e análise regulatória por mercado, papel e caso de uso.
+- Cinco métricas DORA separadas de adoção e resultados. Ondas ajustáveis ao risco e à capacidade.
+- Exportação Markdown com todos os campos e fontes. JSON editável com validação de dados e versão.
 
+## Persistência e compatibilidade
+
+Estado exclusivamente local no navegador, sem envio das respostas ao servidor. Chave atual: bussola-ai-adoption-v2. Na ausência dela, a chave bussola-ai-adoption-v1 é lida e migrada; a original permanece intacta. Backups JSON schema 1 são importáveis. Alterações de significado invalidam revisões e checklists afetados. Métricas ambíguas e evidências dos critérios antigos são preservadas como histórico no backup e no relatório, sem conversão automática. Um rascunho inválido não é sobrescrito automaticamente.
+
+Finalizar o planejamento não comprova execução. Resultados, verificações e análises regulatórias são autodeclarados; a Bússola não executa agentes ou testes, não verifica links e não certifica conformidade.
+
+## Identidade e fontes
+
+Mantido o layout azul royal/ciano definido pelo usuário. O logotipo da Askblue continua removido da interface. A imagem social existente foi preservada.
+
+Fontes oficiais, descrição e data de revisão estão em lib/v2.mjs e são exibidas na metodologia e na exportação.
