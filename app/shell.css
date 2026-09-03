@@ -1,0 +1,121 @@
+/* The shell stays in the viewport; only the content pane scrolls. */
+html, body { height: 100%; overflow: hidden; }
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+.sidebar { min-height: 0; height: 100%; padding: 24px 18px 18px; overflow: hidden; }
+.sidebar > * { flex-shrink: 0; }
+.sidebar nav { min-height: 0; overflow-y: auto; flex-shrink: 1; scrollbar-width: thin; }
+.brand { padding: 0 12px 20px; }
+.side-label { margin-bottom: 10px; }
+.phase { min-height: 52px; margin: 4px 0; padding: 9px 10px; }
+.side-progress { padding: 16px 12px 8px; }
+.side-progress > div:first-child { margin-bottom: 6px; }
+.report-link { margin-top: 8px; }
+.side-bottom { padding-top: 20px; }
+.workspace { min-height: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.topbar { height: 54px; padding: 0 28px; }
+.content-scroll {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  scroll-padding: 20px;
+}
+.content-scroll:focus-visible { outline: 2px solid var(--ring); outline-offset: -2px; }
+main { width: 100%; max-width: 1390px; padding: 24px 28px 18px; }
+h1 { font-size: clamp(26px, 2.3vw, 34px); line-height: 1.2; margin: 12px 0 9px; letter-spacing: -1px; }
+h2 { font-size: 22px; margin: 15px 0 7px; }
+.intro { margin-bottom: 20px; }
+.work-grid { grid-template-columns: minmax(0, 1fr) 230px; gap: 20px; }
+.surface { padding: 22px; }
+.field { margin: 14px 0; gap: 6px; }
+.field input, .field select { height: 38px; padding-top: 8px; padding-bottom: 8px; }
+.field textarea { min-height: 72px; }
+.two-fields, .three-fields { column-gap: 16px; row-gap: 0; }
+.notice { padding: 12px; margin: 14px 0; line-height: 1.6; }
+.source-note, .local-note { margin: 10px 0; }
+.question-progress { margin: 16px 0 10px; }
+.question-progress > span { margin-top: 4px; }
+.question-nav { margin-bottom: 14px; }
+.question-title { font-size: 21px; margin: 12px 0 16px; }
+.choices { gap: 9px; }
+.choice { padding: 12px 14px; }
+.choice > span { gap: 4px; }
+.choice > span > span { line-height: 1.6; }
+.card-footer { margin-top: 18px; padding-top: 16px; }
+.primary-action { min-height: 40px; padding: 9px 16px !important; }
+.context { padding: 20px; }
+.context h3 { font-size: 22px; margin: 14px 0 12px; }
+.perspective { padding: 12px 0; }
+.context-note { padding: 13px; margin-top: 16px; line-height: 1.6; }
+.bottom-note { margin-top: 18px; }
+.footer-actions { margin-top: 6px; }
+details { padding: 13px 0; }
+details > summary { min-height: 24px; }
+details > summary:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; border-radius: 3px; }
+details[open] > summary { margin-bottom: 12px; }
+/* Only an open disclosure changes its own icon, not those of its children. */
+details:not([open]) > summary::after { content: '+'; }
+details[open] > summary::after { content: '−'; }
+.v2-section { margin-top: 18px; padding-top: 16px; }
+.pilot-rating { padding: 12px 0; }
+.stage-card { padding: 14px 0; }
+.stage-head { justify-content: flex-start; gap: 12px; }
+.stage-title { display: flex; gap: 10px; align-items: center; flex: 1; font-size: 15px; font-weight: 500; }
+.stage-title > span { color: #6583c6; font-size: 12px; }
+.stage-head > .pill { flex-shrink: 0; }
+.gap-card { padding: 16px; margin: 12px 0; }
+.gap-summary > span:first-child { flex: 1; }
+.gap-summary .priority { white-space: nowrap; }
+.archetypes { margin: 14px 0; }
+.archetype { gap: 8px; padding: 12px; }
+.roadmap-mini { margin: 18px 0; }
+.roadmap-mini > div { padding-top: 10px; }
+.autonomy-panel { padding: 14px; margin-bottom: 16px; }
+.wave-overview { margin: 16px 0; }
+.metric-row { padding: 12px 0; }
+@media (max-height: 760px) and (min-width: 701px) {
+  .sidebar { padding-top: 18px; }
+  .brand { padding-bottom: 14px; }
+  .phase { min-height: 46px; padding-top: 7px; padding-bottom: 7px; }
+  .side-bottom { display: none; }
+}
+@media (max-width: 1200px) {
+  .work-grid { grid-template-columns: minmax(0, 1fr); }
+  .context { display: none; }
+}
+@media (max-width: 700px) {
+  .app-shell { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .sidebar { height: auto; padding: 12px 16px 8px; }
+  .brand { padding: 0 0 8px; }
+  .product-name { display: flex; align-items: baseline; gap: 9px; }
+  .brand .product-name span { margin: 0; }
+  .sidebar nav { flex-shrink: 0; overflow-x: auto; overflow-y: hidden; padding: 2px; }
+  .phase { min-height: 37px; padding: 5px 8px; margin: 0; flex-shrink: 0; }
+  .topbar { height: 42px; padding: 0 16px; }
+  main { padding: 18px 16px 16px; }
+  h1 { font-size: 27px; margin-top: 10px; }
+  .intro { font-size: 13px; margin-bottom: 16px; }
+  .surface { padding: 18px 16px; }
+  .card-footer { flex-direction: row; align-items: center; gap: 8px; }
+  .card-footer > .primary-action { order: 0; width: auto; }
+  .primary-action { padding: 9px 12px !important; }
+  .three-fields { grid-template-columns: minmax(0, 1fr); }
+  .stage-head { flex-wrap: wrap; }
+  .stage-title { font-size: 13px; }
+}
+/* Exported reports must be allowed to flow across printed pages. */
+@media print {
+  html, body { height: auto; overflow: visible; }
+  .app-shell, .workspace, .content-scroll { display: block; height: auto; overflow: visible; }
+  .sidebar, .topbar, .bottom-note, .context, .card-footer { display: none; }
+  main { max-width: none; padding: 0; }
+}
