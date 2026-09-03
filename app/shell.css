@@ -143,6 +143,28 @@ details[open] > summary::after { content: '−'; }
   .stage-head { flex-wrap: wrap; }
   .stage-title { font-size: 13px; }
 }
+/* Plan actions stay available in the upper-right toolbar. */
+.topbar-brand { min-width: 0; }
+.topbar-title { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height: 1.5; }
+.topbar .save-status { font-size: 9px; gap: 4px; line-height: 1.5; margin-top: 2px; }
+.topbar .save-status > svg { flex-shrink: 0; }
+.topbar .save-status > span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.topbar-actions { display: flex; flex-shrink: 0; align-items: center; gap: 2px; margin-left: auto; }
+.topbar-actions > button { height: 32px; padding: 0 9px; gap: 5px; color: #6578a5; font-size: 11px; }
+.topbar-actions > button:hover { color: #030cef; background: #eaf0ff; }
+.reset-dialog { background: var(--card); color: var(--foreground); }
+.reset-dialog h2 { font-size: 18px; margin: 0; }
+@media (max-width: 1000px) {
+  .topbar-actions { gap: 3px; }
+  .topbar-actions > button { width: 32px; padding: 0; }
+  .topbar-actions .action-label, .topbar-description { display: none; }
+  .topbar-actions > button svg { width: 15px; height: 15px; }
+}
+@media (max-width: 700px) {
+  .topbar { gap: 8px; }
+  .topbar .topbar-title b { display: inline; font-size: 12px; }
+  .topbar .save-status { font-size: 8px; }
+}
 /* Exported reports must be allowed to flow across printed pages. */
 @media print {
   html, body { height: auto; overflow: visible; }
