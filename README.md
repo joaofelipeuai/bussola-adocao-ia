@@ -50,6 +50,7 @@ bussola-adocao-ia/
 ## Documentação
 
 - [Arquitetura e manutenção](docs/ARQUITETURA.md)
+- [Autenticação, autorização e isolamento dos rascunhos](docs/ACESSO.md)
 - [Funcionalidades e decisões da v2](docs/FRAMEWORK-V2.md)
 - [Referências do framework](docs/REFERENCIAS.md)
 
