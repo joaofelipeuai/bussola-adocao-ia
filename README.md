@@ -1,34 +1,60 @@
 # Bússola v2 — Adoção de IA
 
-Adaptação independente das sete fases do Guia Tech Leads Club Beta v0.5, com referências revistas em 2026-09-03. A versão v2 pertence à aplicação; não é uma edição oficial do framework.
+Wizard de sete fases para planejar e acompanhar a adoção de IA em engenharia, com diagnóstico, piloto mensurável, governança, avaliações de agentes e cinco métricas DORA. Adaptação independente do framework Tech Leads Club.
 
-## Uso e verificação
+Site: [Bússola](https://bussola-adocao-ia.joaofelipesouza.chatgpt.site/).
 
-- npm run dev
-- npm run build
-- node --test lib/framework.test.mjs lib/v2.test.mjs lib/render.test.mjs
+## Começar no Windows
 
-Testes cobrem pontuação original, migração v1, resultados incompletos, autonomia, falhas de avaliações, transporte MCP, calibrações, exportação e renderização no servidor dos formulários. Interações e verificações visuais no navegador não foram solicitadas. WebMCP preserva read_adoption_plan e stage_diagnostic_answers quando document.modelContext está disponível; o contrato não foi validado em um cliente WebMCP nesta atualização.
+Requisitos: Node.js 22.13 ou superior e npm. A instalação de dependências existente foi preservada na mudança de pasta.
 
-## Novidades
+```powershell
+Set-Location 'C:\Users\Joao Souza\Desktop\dev\bussola-adocao-ia'
+npm run dev
+```
 
-- Quatro avaliações complementares de documentação, dados, ambiente e resultado para o usuário. Não alteram a média das nove dimensões; geram ações no plano de gargalos.
-- Prioridade calculada em 7–21. Limiar crítico (11) e percentual L2+ (60%) ajustáveis, com justificativa quando alterados.
-- Piloto com fluxo, comparação, datas, fonte, indicadores, metas e decisões de expandir, ajustar ou encerrar. Variações são descritivas, sem inferência causal automática.
-- Abrangência da adoção separada da autonomia: sugerir, alterar em ambiente isolado, executar ferramentas, atuar em produção. Controles proporcionais por estágio, escopo, responsável e evidências de avaliação.
-- Casos de avaliação com configuração versionada, tarefas, critérios, execuções e evidências. Trocas na configuração invalidam os resultados; mudanças no experimento invalidam a decisão de expansão.
-- Governança baseada no risco da mudança, OWASP 2026, MCP por transporte, privacidade/retencão e análise regulatória por mercado, papel e caso de uso.
-- Cinco métricas DORA separadas de adoção e resultados. Ondas ajustáveis ao risco e à capacidade.
-- Exportação Markdown com todos os campos e fontes. JSON editável com validação de dados e versão.
+Abra o endereço local exibido no terminal. Para instalar novamente as dependências, use `npm ci` na raiz do projeto.
 
-## Persistência e compatibilidade
+## Comandos
 
-Estado exclusivamente local no navegador, sem envio das respostas ao servidor. Chave atual: bussola-ai-adoption-v2. Na ausência dela, a chave bussola-ai-adoption-v1 é lida e migrada; a original permanece intacta. Backups JSON schema 1 são importáveis. Alterações de significado invalidam revisões e checklists afetados. Métricas ambíguas e evidências dos critérios antigos são preservadas como histórico no backup e no relatório, sem conversão automática. Um rascunho inválido não é sobrescrito automaticamente.
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Executar para desenvolvimento com atualização automática |
+| `npm test` | Verificar regras, migração de backups e renderização |
+| `npm run build` | Gerar a versão de produção local |
+| `npm start` | Executar o build localmente com Wrangler |
+| `npm run lint` | Executar as regras de análise do projeto |
+| `npm run format` | Formatar os arquivos do projeto |
 
-Finalizar o planejamento não comprova execução. Resultados, verificações e análises regulatórias são autodeclarados; a Bússola não executa agentes ou testes, não verifica links e não certifica conformidade.
+## Estrutura
 
-## Identidade e fontes
+```text
+bussola-adocao-ia/
+├── app/                  # Página, layout, estilos e metadados
+├── components/           # Formulários e relatório
+│   └── ui/               # Componentes compartilhados de interface
+├── hooks/                # Hooks compartilhados
+├── lib/                  # Regras de negócio, persistência e validação
+├── tests/                # Testes e dados de exemplo
+├── public/               # Imagens e ícones
+├── docs/                 # Arquitetura, referências e framework v2
+├── .openai/hosting.json  # Vínculo com a publicação existente
+├── package.json          # Scripts e dependências
+├── package-lock.json     # Versões fixadas das dependências
+├── vite.config.ts        # Vinext, Vite e Cloudflare
+└── tsconfig.json         # TypeScript e aliases
+```
 
-Mantido o layout azul royal/ciano definido pelo usuário. O logotipo da Askblue continua removido da interface. A imagem social existente foi preservada.
+`node_modules`, `dist`, `.next`, `.vinext` e `.wrangler` são gerados localmente e ignorados pelo Git. O histórico e o remoto do repositório foram preservados.
 
-Fontes oficiais, descrição e data de revisão estão em lib/v2.mjs e são exibidas na metodologia e na exportação.
+## Documentação
+
+- [Arquitetura e manutenção](docs/ARQUITETURA.md)
+- [Funcionalidades e decisões da v2](docs/FRAMEWORK-V2.md)
+- [Referências do framework](docs/REFERENCIAS.md)
+
+## Dados e publicação
+
+Os planos ficam no navegador. Use **Salvar backup** para exportar JSON e **Importar** para restaurar, inclusive ao alternar entre o site publicado e localhost. O relatório completo pode ser baixado em Markdown. A aplicação não exige uma chave de API de IA para preencher e exportar o wizard.
+
+Mover ou editar a pasta local não altera a versão publicada. A configuração do Sites foi mantida para futuras publicações. Não armazene credenciais no repositório.

@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import * as F from './framework.mjs';
-import * as V from './v2.mjs';
-import {validateSaved} from './saved.mjs';
-import {plannedState,executedState} from './test-fixtures.mjs';
+import * as F from '../lib/framework.mjs';
+import * as V from '../lib/v2.mjs';
+import {validateSaved} from '../lib/saved.mjs';
+import {plannedState,executedState} from './fixtures.mjs';
 test('mudanças no experimento, modelo e enquadramento invalidam decisões anteriores',()=>{const s=executedState();const changed=V.updateSection(s.v2,'experiment','comparison','Nova amostra');assert.equal(changed.experiment.decision,'pending');assert.equal(changed.experiment.decisionEvidence,'');assert.equal(s.v2.experiment.decision,'expand');s.v2.evaluations={system:'v1',owner:'QA',cadence:'a cada mudança',cases:[{...V.newEval('case'),task:'Tarefa',expected:'Aceite',trials:'2',passed:'2',evidence:'logs'}]};assert.equal(V.evalStatus(s.v2.evaluations).passed,true);const next=V.updateSection(s.v2,'evaluations','system','v2');assert.equal(V.evalStatus(next.evaluations).passed,false);assert.equal(next.evaluations.cases[0].expected,'Aceite');assert.equal(V.updateSection(s.v2,'regulation','markets','Outro mercado').regulation.applicability,'pending')});
 test('v1 migra sem alterar a entrada, preserva texto e evidências, invalida critérios alterados',()=>{
  const old=executedState();delete old.v2;old.schema=1;old.reviewed=Array(7).fill(true);

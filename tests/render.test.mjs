@@ -5,8 +5,8 @@ import {createServer} from 'vite';
 import react from '@vitejs/plugin-react';
 import * as React from 'react';
 import {renderToString} from 'react-dom/server';
-import {plannedState,executedState} from './test-fixtures.mjs';
-import {initialState} from './framework.mjs';
+import {plannedState,executedState} from './fixtures.mjs';
+import {initialState} from '../lib/framework.mjs';
 test('todos os formulários renderizam no servidor, incluindo estados vazios e controles condicionais',async()=>{
  const server=await createServer({configFile:false,plugins:[react()],resolve:{alias:{'@':process.cwd()}},server:{middlewareMode:true,watch:null},customLogger:{info(){},warn(){},warnOnce(){},error(msg){throw new Error(msg)},clearScreen(){},hasErrorLogged(){return false},hasWarned:false}});
  try{

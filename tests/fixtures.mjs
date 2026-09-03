@@ -1,5 +1,5 @@
-import * as F from './framework.mjs';
-import {contextQuestions} from './v2.mjs';
+import * as F from '../lib/framework.mjs';
+import {contextQuestions} from '../lib/v2.mjs';
 export function plannedState(){
  const s=F.initialState();
  s.context={name:'Engenharia de Catálogo',size:'24',usage:'team'};

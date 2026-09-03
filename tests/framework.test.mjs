@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import * as F from './framework.mjs';
-import {validateSaved} from './saved.mjs';
+import * as F from '../lib/framework.mjs';
+import {validateSaved} from '../lib/saved.mjs';
 const answers=n=>Object.fromEntries(F.dimensions.map(d=>[d.key,n]));
 test('diagnóstico só fecha com 9 respostas válidas e respeita faixas',()=>{assert.equal(F.diagnostic({}),null);for(const [n,level] of [[1,'low'],[2,'medium'],[3,'high']]){const d=F.diagnostic(answers(n));assert.equal(d.score,n);assert.equal(d.level,level);assert.equal(d.lowest.length,9)}for(const [v,l] of [[1.669,'low'],[1.67,'medium'],[2.339,'medium'],[2.34,'high']])assert.equal(F.level(v),l);const a=answers(3);a.quality=1;assert.deepEqual(F.diagnostic(a).lowest,['quality'])});
 test('piloto aplica peso duplo apenas nas três primeiras dimensões',()=>{assert.equal(F.pilotScore([3,3,3,1,1]).score,2.5);assert.equal(F.pilotScore([1,1,1,3,3]).score,1.5);assert.equal(F.pilotScore([0,3,3,3,3]),null)});

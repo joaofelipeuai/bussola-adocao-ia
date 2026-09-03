@@ -1,6 +1,6 @@
 {
-  "name": "sites-project",
-  "version": "0.1.0",
+  "name": "bussola-adocao-ia",
+  "version": "2.0.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
@@ -10,7 +10,8 @@
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "test": "node --test tests/framework.test.mjs tests/v2.test.mjs tests/render.test.mjs"
   },
   "dependencies": {
     "react": "19.2.6",
