@@ -1,9 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {identityFromHeaders,hasSiteAccess} from '../lib/access-policy.mjs';
-import {draftStorageKey,readDraft} from '../lib/browser-storage.mjs';
+import {draftStorageKey,readDraft,openDraft} from '../lib/browser-storage.mjs';
+import {plannedState} from './fixtures.mjs';
 
 const allowed = ['owner@example.com','guest@example.com'];
+test('starting from the home opens the context without losing saved answers or reviews',()=>{
+  const saved = {...plannedState(),step:5,q:9};
+  const before = structuredClone(saved);
+  const opened = openDraft(saved,true);
+  assert.equal(opened.step,0);
+  assert.equal(opened.q,-1);
+  assert.deepEqual({...opened,step:5,q:9},before);
+  assert.deepEqual(saved,before);
+  assert.deepEqual(openDraft(saved),before);
+});
 const identity = (id,email) => identityFromHeaders(new Headers({...(id?{'oai-authenticated-user-id':id}:{}),...(email?{'oai-authenticated-user-email':email}:{})}));
 test('missing or incomplete identity never opens the wizard',()=>{
   for(const user of [identity(),identity('user'),identity(null,'guest@example.com'),identity('user','invalid'),identity('user','guest@example.com,attacker@example.com')]) assert.equal(hasSiteAccess(user,allowed),false);

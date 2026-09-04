@@ -18,6 +18,6 @@ export function canMigrateLegacyDraft(user: {email: string}) {
   return user.email === OWNER_EMAIL;
 }
 
-export function chatGPTSignInPath() {
-  return '/signin-with-chatgpt?return_to=%2F';
+export function chatGPTSignInPath(returnTo: '/' | '/wizard' | '/wizard?start=1' = '/') {
+  return '/signin-with-chatgpt?return_to=' + encodeURIComponent(returnTo);
 }

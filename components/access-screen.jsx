@@ -4,6 +4,7 @@ export default function AccessScreen({user,signInPath}) {
   const denied = Boolean(user);
   return <main className="access-page"><section className="access-card" aria-labelledby="access-title">
     <div className="access-brand">Bússola<span>ADOÇÃO DE IA</span></div>
+    <a className="access-home" href="/">← Voltar ao início</a>
     <span className="access-symbol"><LockKeyhole size={25}/></span>
     <p className="eyebrow">ACESSO RESTRITO</p>
     <h1 id="access-title">{denied?'Esta conta não tem acesso.':'Seu próximo passo começa aqui.'}</h1>

@@ -21,5 +21,10 @@ test('todos os formulários renderizam no servidor, incluindo estados vazios e c
    }}
   }
   const {default:Home}=await server.ssrLoadModule(path.resolve('components/adoption-wizard.jsx'));const html=renderToString(React.createElement(Home,{viewer:{id:'test-owner',email:'owner@example.com'}}));assert.match(html,/V2 · 2026/);assert.ok(!html.includes('class="askblue-logo"'));
+  const {default:Landing}=await server.ssrLoadModule(path.resolve('components/home-page.jsx'));
+  const landing=renderToString(React.createElement(Landing));
+  assert.match(landing,/href="\/wizard\?start=1"[^>]*>Começar meu plano/);
+  assert.match(landing,/href="\/wizard"[^>]*>Retomar planejamento/);
+  assert.match(html,/href="\/"[^>]*aria-label="Bússola — voltar ao início"/);
  }finally{await server.close()}
 });

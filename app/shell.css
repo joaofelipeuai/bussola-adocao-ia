@@ -12,6 +12,7 @@ html, body { height: 100%; overflow: hidden; }
 .sidebar > * { flex-shrink: 0; }
 .sidebar nav { min-height: 0; overflow-y: auto; flex-shrink: 1; scrollbar-width: thin; }
 .brand { padding: 0 12px 20px; }
+.wizard-home-link { color:inherit; text-decoration:none; }
 .side-label { margin-bottom: 10px; }
 .phase { min-height: 52px; margin: 4px 0; padding: 9px 10px; }
 .side-progress { padding: 16px 12px 8px; }
