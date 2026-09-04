@@ -1,5 +1,5 @@
 'use client';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useLayoutEffect,useRef,useState} from 'react';
 import {flushSync} from 'react-dom';
 import {ArrowRight,ArrowLeft,ArrowUpRight,Check,Layers3,Download,Upload,RotateCcw,Info,FileText,LogOut} from 'lucide-react';
 import {Button} from '@/components/ui/button';
@@ -22,6 +22,23 @@ const descriptions=['Entenda a prontidão da sua engenharia e descubra onde agir
 export default function Home({viewer,canMigrateLegacy=false}){
  const KEY=draftStorageKey(viewer.id);
  const [s,setS]=useState(F.initialState),[loaded,setLoaded]=useState(false),[saved,setSaved]=useState(false),[saveBlocked,setSaveBlocked]=useState(false),[errors,setErrors]=useState([]),[message,setMessage]=useState(''),[report,setReport]=useState(false),[method,setMethod]=useState(false),[reset,setReset]=useState(false);const file=useRef(null),heading=useRef(null),contentScroll=useRef(null),methodology=useRef(null),errorBox=useRef(null),stateRef=useRef(s);stateRef.current=s;
+ useLayoutEffect(()=>{
+  if(report)return;
+  const pane=contentScroll.current;
+  const form=pane?.querySelector('.work-grid');
+  const main=pane?.querySelector('main');
+  if(!form||!main)return;
+  // Keep the card at the form's unscrolled top, including wrapped headings.
+  const align=()=>{
+   const top=form.getBoundingClientRect().top+pane.scrollTop;
+   pane.style.setProperty('--context-top',`${top}px`);
+  };
+  align();
+  const observer=new ResizeObserver(align);
+  observer.observe(main);
+  observer.observe(pane);
+  return ()=>observer.disconnect();
+ },[report,s.step,message]);
  useEffect(()=>{try{const raw=readDraft(localStorage,viewer.id,canMigrateLegacy);if(raw){const original=JSON.parse(raw);setS(validateSaved(original));if(original.schema===1)setMessage('Seu plano foi recuperado na v2. Revise o contexto, o piloto e os controles atualizados. O rascunho original da v1 permanece guardado neste navegador.')}}catch{setSaveBlocked(true);setMessage('Não foi possível recuperar o rascunho. O original foi preservado. Importe um backup ou use Reiniciar para criar um novo plano.')}setLoaded(true)},[]);
  useEffect(()=>{if(!loaded||saveBlocked)return;try{localStorage.setItem(KEY,JSON.stringify(s));setSaved(true)}catch{setSaved(false)}},[s,loaded,saveBlocked]);
  useEffect(()=>{contentScroll.current?.scrollTo({top:0});heading.current?.focus({preventScroll:true});setErrors([])},[s.step,s.q,report]);

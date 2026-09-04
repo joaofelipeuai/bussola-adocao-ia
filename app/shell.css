@@ -97,14 +97,13 @@ details[open] > summary::after { content: '−'; }
   .with-context main { padding-right: 294px; }
   .content-body .context {
     position: fixed;
-    top: calc(50vh + 27px);
-    top: calc(50dvh + 27px);
+    top: var(--context-top, 200px);
     /* Account for the sidebar, centered page width and outer scrollbar. */
     right: max(44px, calc((100vw - 240px - 1390px) / 2 + 44px));
-    transform: translateY(-50%);
+    transform: none;
     width: 230px;
-    max-height: calc(100vh - 102px);
-    max-height: calc(100dvh - 102px);
+    max-height: calc(100vh - var(--context-top, 200px) - 24px);
+    max-height: calc(100dvh - var(--context-top, 200px) - 24px);
     margin: 0;
     z-index: 1;
     overflow-y: auto;
