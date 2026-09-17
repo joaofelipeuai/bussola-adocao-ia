@@ -4,7 +4,7 @@ import {identityFromHeaders, hasSiteAccess} from '@/lib/access-policy.mjs';
 
 // This allowlist stays on the server and is never passed to the browser.
 const OWNER_EMAIL = 'joaofelipeaps@gmail.com';
-const ALLOWED_EMAILS = [OWNER_EMAIL, 'antonio.eduardo@uol.com.br', 'mayconstallony@gmail.com'];
+const ALLOWED_EMAILS = [OWNER_EMAIL, 'antonio.eduardo@uol.com.br', 'mayconstallony@gmail.com', 'netfm5@gmail.com'];
 
 export async function getChatGPTUser() {
   return identityFromHeaders(await headers());
